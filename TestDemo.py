@@ -1,25 +1,18 @@
 import numpy as np
+import torch
 import re
 
-images_dir = 'D:\Lee\Desktop\mindspore\images.txt'
+def test_device():
+    
+    #cuda是否可用,True or False
+    ava = torch.cuda.is_available()
+    # 返回gpu数量；
+    count = torch.cuda.device_count()
+    # 返回gpu名字，设备索引默认从0开始；
+    name = torch.cuda.get_device_name(0)
+    # 返回当前设备索引；
+    index = torch.cuda.current_device()
+    return index
 
 if __name__ == '__main__':
-
-    lineList = []
-    # file = open(images_dir,'r',encoding='UTF-8')
-    file = open(images_dir, 'r', encoding='UTF-8')
-    line = file.readline()
-    while line:
-        if line.count('[') >= 1:
-            line = line.replace('[', '')
-            print(line)
-        if line.count(']') >= 1:
-            line = line.replace(']', '')
-            print(line)
-        lineList.append(line)
-        line = file.readline()
-
-    file = open(r'D:\target.txt', 'w', encoding='UTF-8')
-    for i in lineList:
-        file.write(i)
-    print('ok')
+    print(test_device())
