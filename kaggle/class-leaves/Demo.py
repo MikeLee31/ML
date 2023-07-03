@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import torchvision.models as models
 # This is for the progress bar.
 from tqdm import tqdm
+from LeavesData import LeavesData
 
 base_path = r'C:\Users\25351\ML-data\classify-leaves'
 # 查看labels文件
