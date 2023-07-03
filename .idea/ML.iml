@@ -5,4 +5,11 @@
     <orderEntry type="jdk" jdkName="D:\Code\Miniconda310\envs\pytorch" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/MyTransformer" />
+      </list>
+    </option>
+  </component>
 </module>
