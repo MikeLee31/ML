@@ -2,14 +2,14 @@ import torch.nn as nn
 
 
 class Attention(nn.Module):
-    '''
+    """
     Attention Module used to perform self-attention operation allowing the model to attend
     information from different representation subspaces on an input sequence of embeddings.
     The sequence of operations is as follows :-
 
     Input -> Query, Key, Value -> ReshapeHeads -> Query.TransposedKey -> Softmax -> Dropout
     -> AttentionScores.Value -> ReshapeHeadsBack -> Output
-    '''
+    """
 
     def __init__(self,
                  embed_dim,  # 输入token的dim

@@ -11,6 +11,7 @@ def drop_path(x, drop_prob: float = 0., training: bool = False):
     changing the layer and argument names to 'drop path' rather than mix DropConnect as a layer name and use
     'survival rate' as the argument.
     """
+    # 路径丢弃只在训练中生效
     if drop_prob == 0. or not training:
         return x
     keep_prob = 1 - drop_prob

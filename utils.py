@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 from tqdm import tqdm  # 在脚本中使用较好
-
+from torchinfo import summary
 
 # from tqdm import tqdm_notebook as tqdm # 在jupyter中使用
 
@@ -131,8 +131,8 @@ def train(net, train_loader, test_loader, epochs, optimizer, criterion, schedule
                                     'Train Loss': train_loss / (step + 1)})
                 pbar.update(1)
             pbar.close()
-        train_loss = train_loss / len(trainloader)
-        train_acc = train_acc * 100 / len(trainloader)
+        train_loss = train_loss / len(train_loader)
+        train_acc = train_acc * 100 / len(train_loader)
         if verbose:
             train_acc_list.append(train_acc)
             train_loss_list.append(train_loss)
@@ -223,3 +223,7 @@ def plot_history(epochs, Acc, Loss, lr):
     plt.xlabel('epoch')
     plt.ylabel('Train LR')
     plt.show()
+
+
+def print_model_info(net, x):
+    summary(net,x)

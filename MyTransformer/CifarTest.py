@@ -9,7 +9,7 @@ net = vit_cifar_patch4_32()
 def print_model_info(net):
     # (1,3,32,32) batch size  通道数  图片宽高
     summary(net, (1, 3, 32, 32))
-    print(net)
+    # print(net)
 
 
 def test1():
@@ -19,5 +19,5 @@ def test1():
 
 
 if __name__ == '__main__':
-    # print_model_info(net)
-    test1()
+    print_model_info(net)
+    # test1()
