@@ -1,7 +1,7 @@
 import torch
 from torchinfo import summary
 
-from MyTransformer.Vit.VisionTransformer import vit_cifar_patch4_32
+from Model.VisionTransformer import vit_cifar_patch4_32
 
 net = vit_cifar_patch4_32()
 

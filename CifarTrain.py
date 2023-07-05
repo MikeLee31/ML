@@ -4,11 +4,10 @@ from torchvision.transforms import transforms
 import torch.optim as optim
 import torch.nn as nn
 import os
-import time
 # 自己的模块
 from utils import train
 from utils import plot_history
-from MyTransformer.Vit.VisionTransformer import vit_cifar_patch4_32
+from Model.VisionTransformer import vit_cifar_patch4_32
 
 
 transform = transforms.Compose([
@@ -36,8 +35,8 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.94, 
                                                  min_lr=0.000001)  # 动态更新学习率
 # scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[150, 225], gamma=0.5)
 
-if not os.path.exists('./model'):
-    os.makedirs('./model')
+if not os.path.exists('MyTransformer/model'):
+    os.makedirs('MyTransformer/model')
 else:
     print('文件已存在')
 save_path = './model/vit_cifar.pth'
