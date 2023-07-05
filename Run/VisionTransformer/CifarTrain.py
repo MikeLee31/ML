@@ -7,7 +7,7 @@ import os
 # 自己的模块
 from utils import train
 from utils import plot_history
-from Model.VisionTransformer import vit_cifar_patch4_32
+from Model.VisionTransformerModel import vit_cifar_patch4_32
 
 
 transform = transforms.Compose([
@@ -27,7 +27,6 @@ test_loader = torch.utils.data.DataLoader(test_set, batch_size=Batch_Size, shuff
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 net = vit_cifar_patch4_32()
-
 # optimizer = optim.SGD(net.parameters(), lr=1e-1, momentum=0.9, weight_decay=5e-4)
 optimizer = optim.Adam(net.parameters())
 criterion = nn.CrossEntropyLoss()
@@ -35,11 +34,11 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.94, 
                                                  min_lr=0.000001)  # 动态更新学习率
 # scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[150, 225], gamma=0.5)
 
-if not os.path.exists('MyTransformer/model'):
-    os.makedirs('MyTransformer/model')
+if not os.path.exists('./checkpoint'):
+    os.makedirs('./checkpoint')
 else:
     print('文件已存在')
-save_path = './model/vit_cifar.pth'
+save_path = './checkpoint/vit_cifar.pth'
 
 Acc, Loss, Lr = train(net, train_loader, test_loader, epoch,
                       optimizer, criterion, scheduler, save_path, verbose=True)
