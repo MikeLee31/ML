@@ -91,9 +91,7 @@ class EarlyStopping:
 
 
 def train(net, train_loader, test_loader, epochs, optimizer, criterion, scheduler
-          , path='./model.pth', writer=None, verbose=False,device=''):
-    if device == '':
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+          , path='./model.pth', writer=None, verbose=False):
     best_acc = 0
     train_acc_list, test_acc_list = [], []
     train_loss_list, test_loss_list = [], []
@@ -103,23 +101,20 @@ def train(net, train_loader, test_loader, epochs, optimizer, criterion, schedule
         train_acc = 0
         test_loss = 0
         test_acc = 0
-        if torch.cuda.is_available():
-            net = net.to(device)
         net.train()
         train_step = len(train_loader)
         with tqdm(total=train_step, desc=f'Train Epoch {i + 1}/{epochs}', postfix=dict, mininterval=0.3) as pbar:
             for step, data in enumerate(train_loader, start=0):
-                im, label = data
-                im = im.to(device)
-                label = label.to(device)
-
-                optimizer.zero_grad()
+                image, label = data
+                image = image.cuda(non_blocking=True)
+                label = label.cuda(non_blocking=True)
                 # 释放内存
                 if hasattr(torch.cuda, 'empty_cache'):
                     torch.cuda.empty_cache()
                 # formard
-                outputs = net(im)
+                outputs = net(image)
                 loss = criterion(outputs, label)
+                optimizer.zero_grad()
                 # backward
                 loss.backward()
                 # 更新参数
@@ -148,13 +143,13 @@ def train(net, train_loader, test_loader, epochs, optimizer, criterion, schedule
             with torch.no_grad():
                 with tqdm(total=test_step, desc=f'Test Epoch {i + 1}/{epochs}', postfix=dict, mininterval=0.3) as pbar:
                     for step, data in enumerate(test_loader, start=0):
-                        im, label = data
-                        im = im.to(device)
-                        label = label.to(device)
+                        image, label = data
+                        image = image.cuda(non_blocking=True)
+                        label = label.cuda(non_blocking=True)
                         # 释放内存
                         if hasattr(torch.cuda, 'empty_cache'):
                             torch.cuda.empty_cache()
-                        outputs = net(im)
+                        outputs = net(image)
                         loss = criterion(outputs, label)
                         test_loss += loss.item()
                         test_acc += get_acc(outputs, label).item()
