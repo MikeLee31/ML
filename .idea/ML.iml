@@ -5,11 +5,4 @@
     <orderEntry type="jdk" jdkName="Remote Python 3.9.16 (sftp://lihan@10.1.21.252:22/home/lihan/miniconda3/envs/py39/bin/python) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
-  <component name="PyNamespacePackagesService">
-    <option name="namespacePackageFolders">
-      <list>
-        <option value="$MODULE_DIR$/Run" />
-      </list>
-    </option>
-  </component>
 </module>

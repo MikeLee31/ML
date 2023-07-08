@@ -91,9 +91,9 @@ class EarlyStopping:
 
 
 def train(net, train_loader, test_loader, epochs, optimizer, criterion, scheduler
-          , path='./model.pth', writer=None, verbose=False,device=''):
-    if device == '':
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+          , path='./model.pth', writer=None, verbose=False):
+
+    device = 'cuda'
     best_acc = 0
     train_acc_list, test_acc_list = [], []
     train_loss_list, test_loss_list = [], []
