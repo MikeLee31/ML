@@ -12,7 +12,6 @@ import torch
 import torch.nn as nn
 from timm.models.registry import register_model
 from timm.models.layers import trunc_normal_, DropPath, LayerNorm2d
-from .registry import register_pip_model
 import numpy as np
 from pathlib import Path
 
@@ -622,7 +621,7 @@ class HAT(nn.Module):
 
         self.sr_ratio = sr_ratio
         if sr_ratio > 1:
-            # if do hierarchical attention, this part is for carrier tokens
+            # if do hierarchical attention, this part is for carrier tokens 
             self.hat_norm1 = norm_layer(dim)
             self.hat_norm2 = norm_layer(dim)
             self.hat_attn = WindowAttention(
@@ -951,8 +950,7 @@ class FasterViT(nn.Module):
                          strict=strict)
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_0_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [2, 3, 6, 5])
     num_heads = kwargs.pop("num_heads", [2, 4, 8, 16])
@@ -985,8 +983,7 @@ def faster_vit_0_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_1_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [1, 3, 8, 5])
     num_heads = kwargs.pop("num_heads", [2, 4, 8, 16])
@@ -1019,8 +1016,7 @@ def faster_vit_1_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_2_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [3, 3, 8, 5])
     num_heads = kwargs.pop("num_heads", [2, 4, 8, 16])
@@ -1053,8 +1049,7 @@ def faster_vit_2_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_3_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [3, 3, 12, 5])
     num_heads = kwargs.pop("num_heads", [2, 4, 8, 16])
@@ -1091,8 +1086,7 @@ def faster_vit_3_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_4_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [3, 3, 12, 5])
     num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
@@ -1130,8 +1124,7 @@ def faster_vit_4_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_5_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [3, 3, 12, 5])
     num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
@@ -1169,8 +1162,7 @@ def faster_vit_5_224(pretrained=False, **kwargs):
     return model
 
 
-@register_pip_model
-@register_model
+
 def faster_vit_6_224(pretrained=False, **kwargs):
     depths = kwargs.pop("depths", [3, 3, 16, 8])
     num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
