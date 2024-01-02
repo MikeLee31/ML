@@ -17,7 +17,7 @@ def test_device():
     index = torch.cuda.current_device()
     print(index)
 
-def 
+
 
 if __name__ == '__main__':
     test_device()
